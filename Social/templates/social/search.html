@@ -1,0 +1,127 @@
+{% extends 'social/base.html' %}
+
+
+{% block content %}
+
+{% for profile in profile_list  %}
+
+<div class="container">
+
+    <nav>
+        <div class="level-item has-text-centered">
+          <div>
+
+            <div class="level-item has-text-centered">
+                <div>
+                  <p class="title text-light">
+                      
+                      {% if profile.profile_picture %}
+                          
+                       <img src="{{ profile.profile_picture.url }} " class="rounded-circle mt-2" width="300" height="300" alt="">
+
+                       {% else %}
+                       no pic
+                      {% endif %}
+                          
+                  </p>
+                </div>
+                <br><br><br><br><br>
+              </div>
+           
+            <p style="color: aqua; text-transform: uppercase;" class="title"><a class="text-primary" href=" {% url 'profile' profile.pk %} " style="text-decoration: none;">
+              @{{profile.user}}
+          </a> </p>
+          <br><br><br><br><br>
+      
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="title text-light">{{profile.followers.all.count}} Followers</p>
+          </div>
+        </div>
+        <br><br><br><br><br>
+        <div class="level-item has-text-centered">
+         
+          <div>
+
+              
+              {% if profile.location %}
+
+              <p class="title text-light">LOCATION</p>
+              <p class="heading text-light">{{profile.location}}</p>
+                  
+              {% endif %}
+                  
+           
+          </div>
+
+       
+
+        </div>
+      </nav>
+      <br><br><br><br><br>
+
+
+</div>
+<br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+{% endfor  %}
+
+
+
+
+<style>
+    .container{
+        height: 100%;
+        margin-top: 50%;
+        margin-top: 10%;
+    }
+
+</style>
+
+
+{% endblock content %}
+    
+
+
+
+
+
+<div class="container">
+
+   
+           <br><br>
+            
+
+           
+
+
+            <p> <b class="title text-muted" >BIO</p>
+              <br>
+              <p class="heading"><i class="text-light">{{profile.bio}}</i></p>
+              <br><br>
+                
+           
+                    
+            </div>
+            
+            <br>
+            <div class="tabs is-centered">
+                <ul>
+                  <li class="is-active"><a style="color:#fff;"> {{profile.post.all.count}} posts </a></li>
+                
+                </ul>
+              </div>
+              <br>
+                
+        </div>
+    </div>
+
+    <br><br><br><br>
+</div>
+
+

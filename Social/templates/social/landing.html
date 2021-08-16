@@ -1,0 +1,73 @@
+{% extends 'social/base.html' %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-sm-12 text-center">
+            <h1 class="display-2"> Conect with your friends!</h1>
+            <p class="mt-3 lead">Follow people who instrest you, stay upto date with latest news and join conversations with your friends..</p>
+
+            {% if user.is_authenticated %}
+
+             Logged in as    <strong>{{user.username}}</strong>
+
+            <div class="d-flex justify-content-center mt-5">
+                
+                
+                <a href=" {%  url 'account_logout' %} " class="btn btn-light mr-2">Logout</a>
+                
+                {% else %}
+
+               <button >
+                <a href=" {%  url 'account_login' %} "  class=" mr-2">Login</a>
+               </button>
+               <button>
+                <a href=" {% url 'account_signup'  %} " class=" mr-2">Register</a>
+                
+               </button>
+                {% endif %}
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br><br><br><br>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap');
+    .container p{
+        font-weight: bold;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+    .container h1{
+        font-family: 'Fjalla One', sans-serif;
+    }
+    .container{
+        transform: translate Y(50%);
+        top: 50;
+        margin-top: 20%;
+        margin-bottom: 50%;
+        height: 100%;
+    }
+    strong{
+        color: aqua;
+    }
+
+  button{
+    border: none;
+    outline: none;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.503);
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 12px;
+  }
+</style>
+    
+{% endblock content %}
+    

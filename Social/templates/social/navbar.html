@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        
+                  
+      <a class="navbar-brand mt-1" style="color: aliceblue;"
+      {% if user.is_authenticated %}
+
+      href=" {% url 'post_list' %}"
+      
+      {% endif %}
+
+      > <i class="fas fa-comment"> KONECT</i>  </a>
+      <button style="color: #fff;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+      
+       
+        {% if user.is_authenticated %}
+
+        <form class="d-flex" method="GET" action="{% url 'profile_search' %} ">
+          <div class="input-group">
+              
+              <div class="search d-flex">
+                <input type="text" class="form-control" name="query" value=" {{request.GET.query}} " placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+
+              <button style="border: none; background: transparent; box-shadow:none; color:#fff;" type="submit"><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+      </form>
+
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" role="buton" aria-expanded="false"><i class="fas fa-user" style="color: aliceblue;"></i></a>
+        <ul class="dropdown-menu" style="background-color: rgb(8, 5, 40);">
+          <li><a style="color: aliceblue;" class="dropdown-item" href=" {% url 'profile' user.profile.pk %} ">Profile</a></li>
+          <li><a style="color: aliceblue;" class="dropdown-item" href="{%  url 'account_logout' %}">Sign Out</a></li>
+        </ul>
+      </div>
+      {% endif %}
+
+
+      </div>
+    </div>
+  </nav>
+
+  <style>
+    .navbar{
+      background-color: rgb(8, 5, 40);
+    }
+    .navbar input[type=text], input[type=password], input[type=email]{
+      border: none;
+      background: transparent;
+      outline: none;
+      overflow: none;
+      height: 30px;
+      font-size: 16px;
+      opacity: 1;
+      color: #fff;
+    }
+    .search{
+      border: 1px solid rgba(221, 221, 221, 0.374);
+      border-radius: 12px;
+      outline: none;
+    }
+
+
+   
+  </style>
+
+
+
+  

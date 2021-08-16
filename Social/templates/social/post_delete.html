@@ -1,0 +1,29 @@
+{% extends 'social/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-5 col-sm-6">
+                <a class="btn btn-light" href=" {% url 'post_list' %}  "> Back To Post </a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-3 mb-5">
+            <div class="col-md-5 col-sm-12 border-bottom">
+
+               <form action="" method="POST">
+                <h5>Are you sure?</h5>
+                <p>You are about to delete this post, this cannot be undone!</p>
+
+                {% csrf_token%}
+                   <div class="d-grid gap-2">
+                       <button class="btn btn-danger mt-3">Delete</button>
+                   </div>
+               </form>
+            </div>
+        </div>
+        
+        
+    </div>
+{% endblock content %}
+    

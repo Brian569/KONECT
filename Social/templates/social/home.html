@@ -1,0 +1,105 @@
+{% extends 'social/base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-3 col-sm-6 ">
+
+            <a class="btn btn-outline-light" href=" {% url 'addpost' %}  ">  New Post </a>
+        </div>
+        <br><br><br>
+    </div>
+
+    <div class="container">
+
+        
+        {% for post in  posts %}
+
+        
+            <div class="card col-md-10 col-sm-12 justify-content-center mt-5" style="width: 40rem;">
+                <img src="{{post.image.url}} " class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><b> {{post.title}} </b></h5>
+                  <p class="card-text"><img src=" {{post.author.profile.profile_picture.url}} " width="30" height="auto" class="rounded-circle" alt="">
+                    <a href=" {% url 'profile' post.author.profile.pk %} " style="text-decoration: none;" class="text-primary">
+                      <b><i>@{{post.author}}</i></b>
+                    </a> <small >  {{post.created_on}} </small> </p>
+
+                    
+                </div>
+                <div class="card-body">
+                    <div class=" d-flex flex-row">
+
+                        <a href="{% url 'single_post' post.pk %}  " style="text-decoration: none;" class="card-link"><i class="far fa-comment"></i> Comments</a>
+                  
+                  <a href="" class="card-link d-flex flex-row">
+                      <form action=" {% url 'like' post.pk %} " method="post">
+                          {% csrf_token %}
+                          <input type="hidden" name="next" value=" {{request.path}} ">
+                          <button style="border: none;box-shadow:none; background: transparent; color:aqua;" type="submit">
+                              <i class="far fa-thumbs-up"> <span> {{post.likes.all.count}} </span> </i>
+                          </button>
+                      </form>
+
+                    <form action=" {% url 'dislike' post.pk %} " method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value=" {{request.path}} ">
+                        <button style="border: none;box-shadow:none; background: transparent; color:aqua;" type="submit">
+                            <i class="far fa-thumbs-down"> <span> {{post.dislikes.all.count}} </span> </i>
+                        </button>
+                    </form>
+                </a>
+                    </div>
+                  
+                </div>
+              </div>
+
+            
+        {% endfor %}
+            
+
+
+    </div>
+    <br><br><br>
+</div>
+<br><br><br>
+
+<style>
+    .card{
+        margin-left: 30vmin;
+        background: rgba(255, 255, 255, 0.107);
+        color: #fff;
+    }
+    .card-link{
+        color: #fff;
+    }
+    .card-link:hover{
+        color: aqua;
+    }
+
+    i{
+        background: transparent;
+    }
+  
+</style>
+
+  
+{% endblock content %}
+
+
+
+    {% for post in posts %}
+    <p> </p>
+    <h6> {{post.title}} </h6>
+    <div class="position-relative">
+
+        <p><img src=" " width="300"  height="auto" alt="...."></p>
+        <a href=" class="stretched-link" ></a>
+        <small><h5><i class="far fa-comment"></i> </h5></small>
+
+    </div>
+   
+     
+    {% endfor %}
+    
+</div>
+    
